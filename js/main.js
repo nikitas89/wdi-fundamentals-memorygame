@@ -1,7 +1,31 @@
 console.log("Up and running");
 
 
-var cards = ["queen", "queen", "king", "king"];
+var cards = [
+  {rank: "queen",
+  suit: "hearts",
+  cardImage: "images/queen-of-hearts.png"
+},
+{
+  rank: "queen",
+  suit: "diamonds",
+  cardImage: "images/queen-of-diamonds.png"
+},
+{
+rank:"king",
+suit: "hearts",
+cardImage: "images/king-of-hearts.png"
+},
+{
+  rank:"king",
+  suit: "diamonds",
+  cardImage: "images/king-of-diamonds.png"
+}
+];
+
+
+
+
 var cardsInPlay = [];
 //fn that checks for match
 var checksForMatch = function(){
@@ -20,11 +44,15 @@ var checksForMatch = function(){
 //fn to store all steps that should happen when the user flips a card.
 var flipCard = function(cardId){
 
-cardsInPlay.push(cards[cardId]);
+  cardsInPlay.push(cards[cardId].rank);
 
-checksForMatch();
+  checksForMatch();
 
-console.log("User Flipped " + cards[cardId]);
+  console.log("User Flipped " + cards[cardId].rank);
+  console.log(cards[cardId].cardImage);
+  console.log(cards[cardId].suit);
+
+
 }// flipcard end
 
 flipCard(0);
