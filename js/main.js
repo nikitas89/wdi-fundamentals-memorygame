@@ -1,6 +1,5 @@
 console.log("Up and running");
 
-
 var cards = [
   {rank: "queen",
   suit: "hearts",
@@ -23,12 +22,10 @@ cardImage: "images/king-of-hearts.png"
 }
 ];
 
-
-
-
 var cardsInPlay = [];
 //fn that checks for match
 var checksForMatch = function(){
+
   if (cardsInPlay.length === 2){
     if (cardsInPlay[0] === cardsInPlay[1]) {
       console.log("You found a match!");
@@ -37,13 +34,14 @@ var checksForMatch = function(){
         console.log("Sorry try again.");
         alert("Sorry try again.");
             }
-
       }
   }
 
 //fn to store all steps that should happen when the user flips a card.
-var flipCard = function(cardId){
+var flipCard = function(){
 
+var cardId = this.getAttribute('data-id');
+  this.setAttribute('src', cards[cardId].cardImage);
   cardsInPlay.push(cards[cardId].rank);
 
   checksForMatch();
@@ -55,5 +53,14 @@ var flipCard = function(cardId){
 
 }// flipcard end
 
-flipCard(0);
-flipCard(1);
+var createBoard = function(){
+  for(var i = 0; i<cards.length; i++){
+    var cardElement = document.createElement('img');
+    cardElement.setAttribute("src", "images/back.png");
+    cardElement.setAttribute("data-id", "i");
+    cardElement.addEventListener('click', flipCard);
+    document.getElementById('game-board').appendChild(cardElement);
+  }
+}
+
+createBoard();
